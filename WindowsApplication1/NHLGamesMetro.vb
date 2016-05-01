@@ -489,7 +489,6 @@ Public Class NHLGamesMetro
         'End If
     End Sub
 
-<<<<<<< HEAD
     Private Sub NHLNotifyIcon_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles NHLNotifyIcon.MouseDoubleClick
         If e.Button = MouseButtons.Left Then
             NHLNotifyIcon.Visible = False
@@ -517,10 +516,6 @@ Public Class NHLGamesMetro
         NHLNotifyIcon.Visible = False
         Me.Visible = True
         Me.WindowState = FormWindowState.Normal
-=======
-    Private Sub lblVersion_Click(sender As Object, e As EventArgs) Handles lblVersion.Click
-
->>>>>>> refs/remotes/origin/master
     End Sub
 
 #End Region

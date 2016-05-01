@@ -1,6 +1,7 @@
 ﻿Imports System.Globalization
 Imports System.Text
 Imports Newtonsoft.Json.Linq
+Imports System.Net
 
 <DebuggerDisplay("{HomeTeam} vs. {AwayTeam} at {[Date]}")>
 Public Class Game
@@ -315,7 +316,6 @@ Public Class Game
 
             returnValue &= "--http-cookie=""mediaAuth=" & Common.GetRandomString(240) & """ --http-header=""User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, Like Gecko) Chrome/48.0.2564.82 Safari/537.36 Edge/14.14316"" "
 
-<<<<<<< HEAD
             Try
                 Dim myHttpWebRequest As HttpWebRequest = CType(WebRequest.Create(Stream.VODURL), HttpWebRequest)
                 Dim myHttpWebResponse As HttpWebResponse = CType(myHttpWebRequest.GetResponse(), HttpWebResponse)
@@ -342,13 +342,11 @@ Public Class Game
                         Stream.GameURL = duplicate
                     End If
                 End If
-                    myHttpWebResponse.Close()
+                myHttpWebResponse.Close()
             Catch e As Exception
                 Console.WriteLine("Trying Duplicate : {0}", e.Message)
             End Try
-=======
             returnValue &= """hlsvariant://"
->>>>>>> refs/remotes/origin/master
 
             If IsVOD Then
                 returnValue &= Stream.VODURL
