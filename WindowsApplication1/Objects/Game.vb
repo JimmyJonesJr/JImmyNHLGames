@@ -1,6 +1,5 @@
 ﻿Imports System.Globalization
-Imports System.IO.Path
-Imports System.Net
+Imports System.Text
 Imports Newtonsoft.Json.Linq
 
 <DebuggerDisplay("{HomeTeam} vs. {AwayTeam} at {[Date]}")>
@@ -259,7 +258,6 @@ Public Class Game
         Return stringBuilder.ToString().Normalize(System.Text.NormalizationForm.FormC)
     End Function
 
-
     Public Class GameWatchArguments
 
         Enum PlayerTypeEnum
@@ -304,12 +302,10 @@ Public Class Game
                 LiteralPlayerArgs = PlayerArgs
             End If
 
-
             Dim titleArg As String = ""
             If PlayerType = PlayerTypeEnum.VLC Then
                 titleArg = " --meta-title '" & GameTitle & "' "
             End If
-
 
             If String.IsNullOrEmpty(PlayerPath) = False Then
                 returnValue &= " --player ""'" & PlayerPath & "' " & titleArg & LiteralPlayerArgs & """ " '--player-passthrough=hls 
@@ -317,8 +313,9 @@ Public Class Game
                 Console.WriteLine("Error: Player path is empty")
             End If
 
-            returnValue &= """hlsvariant://"
+            returnValue &= "--http-cookie=""mediaAuth=" & Common.GetRandomString(240) & """ --http-header=""User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, Like Gecko) Chrome/48.0.2564.82 Safari/537.36 Edge/14.14316"" "
 
+<<<<<<< HEAD
             Try
                 Dim myHttpWebRequest As HttpWebRequest = CType(WebRequest.Create(Stream.VODURL), HttpWebRequest)
                 Dim myHttpWebResponse As HttpWebResponse = CType(myHttpWebRequest.GetResponse(), HttpWebResponse)
@@ -349,12 +346,17 @@ Public Class Game
             Catch e As Exception
                 Console.WriteLine("Trying Duplicate : {0}", e.Message)
             End Try
+=======
+            returnValue &= """hlsvariant://"
+>>>>>>> refs/remotes/origin/master
 
             If IsVOD Then
                 returnValue &= Stream.VODURL
             Else
                 returnValue &= Stream.GameURL
             End If
+
+            returnValue = returnValue.Replace("CDN", CDN)
 
             If Is60FPS Then
                 returnValue &= " name_key=bitrate"" "
@@ -377,8 +379,6 @@ Public Class Game
             If UseLiveStreamerArgs Then
                 returnValue &= LiveStreamerArgs
             End If
-
-
 
             Return returnValue
         End Function

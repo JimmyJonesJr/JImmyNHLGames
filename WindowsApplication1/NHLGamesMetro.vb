@@ -248,7 +248,7 @@ Public Class NHLGamesMetro
 
     Public Sub NewGameFoundHandler(gameObj As Game)
 
-        Dim gameControl As New GameControl(gameObj, ApplicationSettings.Read(Of Boolean)(ApplicationSettings.Settings.ShowScores, True))
+        Dim gameControl As New GameControl(gameObj, ApplicationSettings.Read(Of Boolean)(ApplicationSettings.Settings.ShowScores, True), dtDate.Value)
         FlowLayoutPanel.Controls.Add(gameControl)
 
     End Sub
@@ -489,6 +489,7 @@ Public Class NHLGamesMetro
         'End If
     End Sub
 
+<<<<<<< HEAD
     Private Sub NHLNotifyIcon_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles NHLNotifyIcon.MouseDoubleClick
         If e.Button = MouseButtons.Left Then
             NHLNotifyIcon.Visible = False
@@ -516,6 +517,10 @@ Public Class NHLGamesMetro
         NHLNotifyIcon.Visible = False
         Me.Visible = True
         Me.WindowState = FormWindowState.Normal
+=======
+    Private Sub lblVersion_Click(sender As Object, e As EventArgs) Handles lblVersion.Click
+
+>>>>>>> refs/remotes/origin/master
     End Sub
 
 #End Region
